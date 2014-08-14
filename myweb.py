@@ -18,13 +18,18 @@ class Application(tornado.web.Application):
             debug=True,
         )
 		conn = pymongo.Connection("localhost", 27017)
-		self.db = conn.myweb
+		self.db = conn.companydb
 		tornado.web.Application.__init__(self, handlers, **settings)
 
 class MainHandler(tornado.web.RequestHandler):
 	def get(self):
-		user = r'Ray'
-		self.render("index.html",user = user)
+		basic = self.application.db.basic
+		info = basic.find_one()
+		self.render("index.html",basic = info)
+
+class RegistHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.render("regist.html")
 
 if __name__ == "__main__":
 	tornado.options.parse_command_line()

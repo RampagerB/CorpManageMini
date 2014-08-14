@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>学框架</title>
+	{% block header %}
+	<title>小型公司管理系统</title>
+	<link rel = "Shortcut Icon" href="../static/images/favicon.ico">
+	{% end %}
 </head>
 <body>
-	<h2>Let me try Tornado and Python!</h2>
+	{% block title %}
+	<h2>{{basic['company_name']}}内部管理系统</h2>
+	{% end %}
+	<hr>
+	{% block body %}
+	{% end %}
 </body>
 </html>
