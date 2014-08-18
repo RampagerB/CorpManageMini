@@ -1,0 +1,32 @@
+<div style="float:right;width:15%">
+	{% if staff %}
+		{{ staff['user_name'] }} <br/>
+		【<a href="/changepw/{{staff['user_id']}}">修改密码</a>】【<a href="/exit">登出</a>】
+	{% end %}
+	{% if not staff %}
+	<form action="/login" method="post">
+		<table>
+			<tr>
+				<td>编号</td>
+				<td>
+					<input type="text" name="user_id" />
+				</td>
+				<td>
+					<input type="checkBox" name="ifCookie" value="1"/>记住我
+				</td>
+			</tr>
+			<tr>
+				<td>密码</td>
+				<td>
+					<input type="password" name="user_pw" />
+				</td>
+				<td>
+					<input type="submit" value="登陆" />
+				</td>
+			</tr>
+		</table>
+		{% raw xsrf_form_html() %}
+	</form>
+	{% end %}
+</div>
+<div style="clear:both"></div>

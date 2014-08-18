@@ -1,17 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel = "Shortcut Icon" href="../static/images/favicon.ico">
 	{% block header %}
 	<title>小型公司管理系统</title>
-	<link rel = "Shortcut Icon" href="../static/images/favicon.ico">
 	{% end %}
 </head>
 <body>
 	{% block title %}
-	<h2>{{basic['company_name']}}内部管理系统</h2>
+	<h1 style="width:80%;float:left">{{basic['company_name']}}内部管理系统</h1>
+	{% module Login(user) %}
 	{% end %}
 	<hr>
 	{% block body %}
+	<a href="/regist">添加新成员</a>
+	<table>
+		<tr>
+			<th>编号</th>
+			<th>姓名</th>
+			<th>IP</th>
+		</tr>
+		{% for staff in staffs %}
+			<tr>
+				<td>{{ staff['user_id'] }}</td>
+				<td>{{ staff['user_name'] }}</td>
+				<td>{{ staff['user_ip'] }}</td>
+			</tr>
+		{% end %}
+	</table>
 	{% end %}
+	<div class="footer">
+		
+	</div>
 </body>
 </html>
