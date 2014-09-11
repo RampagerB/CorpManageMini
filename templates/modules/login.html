@@ -1,10 +1,14 @@
-<div style="float:right;width:15%">
-	{% if staff %}
-		{{ staff['user_name'] }} <br/>
-		【<a href="/changepw/{{staff['user_id']}}">修改密码</a>】【<a href="/exit">登出</a>】
-	{% end %}
-	{% if not staff %}
-	<form action="/login" method="post">
+<div id="loginDiv" style="float:right;width:15%">
+	{% if user is not None %}
+		{{ user['user_name'] }} <br/>
+		【<a href="/changepw/{{user['user_id']}}">修改密码</a>】【<a href="/exit">登出</a>】
+	{% else %}
+	<form id="loginForm" action="/login" method="post">
+		<script type="text/javascript">
+			function login(){
+				$("#loginForm").submit();
+			}
+		</script>
 		<table>
 			<tr>
 				<td>编号</td>
@@ -18,7 +22,7 @@
 					<input type="password" name="user_pw" />
 				</td>
 				<td>
-					<input type="submit" value="登陆" />
+					<input type="button" onclick="login()" value="登陆" />
 				</td>
 			</tr>
 		</table>
